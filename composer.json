@@ -1,0 +1,21 @@
+{
+    "autoload": {
+        "psr-4": {
+            "App\\": "./src/",
+            "Router\\": "./routes/"
+        }
+    },
+
+    "require": {
+        "doctrine/orm": "^2.10",
+        "symfony/proxy-manager-bridge": "^6.0",
+        "symfony/cache": "^6.0",
+        "symfony/serializer": "^6.0",
+        "symfony/property-access": "^6.0",
+        "symfony/http-foundation": "^6.0",
+        "laminas/laminas-mail": "^2.15",
+        "doctrine/annotations": "^1.13",
+        "symfony/framework-bundle": "^6.0"
+
+    }
+}
