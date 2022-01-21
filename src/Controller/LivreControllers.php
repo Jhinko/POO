@@ -93,10 +93,17 @@ class LivreControllers
     }
 
 
-public function delete(int $id): bool
-{
-    $entityManager = Em::getEntityManager();
-    return $....->query("DELETE FROM {$this->table} WHERE id = ?", $id);
-}
+    protected function remove($author, $title, $isFlush = false)
+    {
+        $this->em->remove($author, $title);
+        if ($isFlush) {
+            $this->em->flush($author, $title);
+        }
+    }
+
+    public function delete(Book $book)
+    {
+        $this->entityManager->remove($book);
+    }
     
 }
