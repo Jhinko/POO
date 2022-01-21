@@ -93,17 +93,26 @@ class LivreControllers
     }
 
 
-    protected function remove($author, $title, $isFlush = false)
-    {
-        $this->em->remove($author, $title);
-        if ($isFlush) {
-            $this->em->flush($author, $title);
-        }
-    }
+    // protected function remove($author, $title, $isFlush = false)
+    // {
+    //     $this->em->remove($author, $title);
+    //     if ($isFlush) {
+    //         $this->em->flush($author, $title);
+    //     }
+    // }
 
-    public function delete(Book $book)
+    public function delete($iUserID)
     {
-        $this->entityManager->remove($book);
+        $entityManager = Em::getEntityManager();
+        $bookRepository = new AbstractRepository($entityManager, new ClassMetadata("App\Entity\Book"));
+        $book = $bookRepository->find($iUserID);
+        $entityManager->remove($book);
+
+        try {
+            $entityManager->flush();
+        } catch (\Throwable $rm) {
+            exit($rm->getMessage());
+        }
     }
     
 }
